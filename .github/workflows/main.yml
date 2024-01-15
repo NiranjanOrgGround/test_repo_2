@@ -4,18 +4,17 @@ on:
   push:
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+    outputs:
+      url: ${{ steps.deploy-preview.outputs.url }}
     steps:
-      - name: Get the version
-        id: get_version
-        run: echo "version=1.0.0" >> "$GITHUB_OUTPUT"
-
-      - name: Use the version
-        run: echo ${{ steps.get_version.outputs.version }} # {{ steps.<step_id>.outputs.<output_name> }}
-
       - uses: actions/checkout@v3
-        id: deploy
           echo "url=preview_url" >> $GITHUB_OUTPUT
 
-      - run: echo ${{ steps.deploy.outputs.url }}
+  data:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - name: load json files
+        run: echo ${{ needs.deploy.outputs.url }}
