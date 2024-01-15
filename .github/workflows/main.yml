@@ -10,6 +10,7 @@ jobs:
       url: ${{ steps.deploy-preview.outputs.url }}
     steps:
       - uses: actions/checkout@v3
+        id: deploy-preview
           echo "url=preview_url" >> $GITHUB_OUTPUT
 
   data:
