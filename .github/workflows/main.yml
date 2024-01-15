@@ -13,3 +13,5 @@ jobs:
 
       - name: Use the version
         run: echo ${{ steps.get_version.outputs.version }} # {{ steps.<step_id>.outputs.<output_name> }}
+
+      - run: echo "{markdown content}" >> $GITHUB_STEP_SUMMARY
