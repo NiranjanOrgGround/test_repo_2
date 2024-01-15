@@ -9,9 +9,7 @@ jobs:
     steps:
       - name: Get the version
         id: get_version
-        run: echo ::set-output name=version::1.0.0
+        run: echo "version=1.0.0" >> "$GITHUB_OUTPUT"
 
       - name: Use the version
         run: echo ${{ steps.get_version.outputs.version }} # {{ steps.<step_id>.outputs.<output_name> }}
-
-      - run: echo "{markdown content}" >> $GITHUB_STEP_SUMMARY
