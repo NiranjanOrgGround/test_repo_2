@@ -13,3 +13,9 @@ jobs:
 
       - name: Use the version
         run: echo ${{ steps.get_version.outputs.version }} # {{ steps.<step_id>.outputs.<output_name> }}
+
+      - uses: actions/checkout@v3
+        id: deploy
+          echo "url=preview_url" >> $GITHUB_OUTPUT
+
+      - run: echo ${{ steps.deploy.outputs.url }}
